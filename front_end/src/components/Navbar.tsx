@@ -15,14 +15,14 @@ var Navbar = () => {
           <a
             className="nav-item navbar-brand text-white active"
             aria-current="page"
-            href="/"
+            href="./"
           >
             <strong>Home</strong>
           </a>
           <a
             aria-current="page"
             className="nav-item navbar-brand text-white active"
-            href="/about"
+            href="./about"
           >
             About
           </a>
