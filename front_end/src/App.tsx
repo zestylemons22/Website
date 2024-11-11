@@ -3,6 +3,11 @@ import Alert from "./components/Alert";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import hello from "./assets/hello.jpg";
+import about from "./pages/about";
+import home from "./pages/home";
+import Navbar from "./components/Navbar";
+
+import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
 
 interface AlertType {
   id: string;
@@ -33,6 +38,14 @@ function App() {
 
   return (
     <div>
+      <Navbar></Navbar>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/about" Component={about} />
+          <Route index Component={home} />
+        </Routes>
+      </BrowserRouter>
+
       <Button color="primary" onClick={addAlert} style={{ margin: "10px" }}>
         My Button <br></br>
         <img src={hello}></img>
