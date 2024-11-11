@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 var HomeLoaded = () => {
   console.log("home loaded");
@@ -12,20 +13,20 @@ var Navbar = () => {
     >
       <div className="container-fluid">
         <ul className="navbar-nav">
-          <a
+          <Link
             className="nav-item navbar-brand text-white active"
             aria-current="page"
-            href="./"
+            to="/"
           >
             <strong>Home</strong>
-          </a>
-          <a
+          </Link>
+          <Link
             aria-current="page"
             className="nav-item navbar-brand text-white active"
-            href="./about"
+            to="/about"
           >
             About
-          </a>
+          </Link>
         </ul>
       </div>
     </nav>

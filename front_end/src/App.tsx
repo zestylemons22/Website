@@ -38,8 +38,8 @@ function App() {
 
   return (
     <div>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/about" Component={about} />
           <Route index Component={home} />
