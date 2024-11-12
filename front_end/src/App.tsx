@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="/Website/front_end/dist">
         <Navbar />
         <Routes>
           <Route path="/about" Component={about} />
