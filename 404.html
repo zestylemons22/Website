@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript">
+      // Check if the current URL is missing the 'dist' part
+      if (!window.location.pathname.includes('/dist/')) {
+        // Redirect to the correct path
+        window.location.replace('/Website/front_end/dist/');
+      }
+    </script>
     <meta http-equiv="refresh" content="0; url=../" />
   </head>
   <body>
