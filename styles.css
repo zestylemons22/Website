@@ -11,3 +11,8 @@ body {
     padding: 10px 20px;
     font-size: 16px;
 }
+
+.navbar-brand.active {
+    font-weight: bold;
+    text-decoration: underline;
+  }

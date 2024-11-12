@@ -2,12 +2,13 @@ import Button from "./components/Button";
 import Alert from "./components/Alert";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import hello from "./assets/hello.jpg";
 import about from "./pages/about";
 import home from "./pages/home";
 import Navbar from "./components/Navbar";
+import "./App.css";
+import Hiragana from "./pages/Hiragana";
 
-import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { Router, Routes, Route, BrowserRouter, Link } from "react-router-dom";
 
 interface AlertType {
   id: string;
@@ -43,21 +44,20 @@ function App() {
         <Routes>
           <Route path="/about" Component={about} />
           <Route index Component={home} />
+          <Route path="/Hiragana" Component={Hiragana} />
         </Routes>
-      </BrowserRouter>
 
-      <Button color="primary" onClick={addAlert} style={{ margin: "10px" }}>
-        My Button <br></br>
-        <img src={hello}></img>
-      </Button>
-      {visibleAlerts.map((alert, index) => (
-        <Alert
-          key={alert.id}
-          removal={() => removeAlert(alert.id)}
-          index={index}
-        />
-      ))}
-      <Button onClick={doABackflip}>Hello!</Button>
+        <Button color="primary" onClick={addAlert} style={{ margin: "10px" }}>
+          My Button
+        </Button>
+        {visibleAlerts.map((alert, index) => (
+          <Alert
+            key={alert.id}
+            removal={() => removeAlert(alert.id)}
+            index={index}
+          />
+        ))}
+      </BrowserRouter>
     </div>
   );
 }
