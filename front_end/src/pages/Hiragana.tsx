@@ -1,59 +1,26 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TrainingButton from "../components/TrainingButton";
 import { shuffle } from "lodash";
-
-const Characters = [
-  ["あ", "a"],
-  ["い", "i"],
-  ["う", "u"],
-  ["え", "e"],
-  ["お", "o"],
-  ["か", "ka"],
-  ["き", "ki"],
-  ["く", "ku"],
-  ["け", "ke"],
-  ["こ", "ko"],
-  ["さ", "sa"],
-  ["し", "shi"],
-  ["す", "su"],
-  ["せ", "se"],
-  ["そ", "so"],
-  ["た", "ta"],
-  ["ち", "chi"],
-  ["つ", "tsu"],
-  ["て", "te"],
-  ["と", "to"],
-  ["な", "na"],
-  ["に", "ni"],
-  ["ぬ", "nu"],
-  ["ね", "ne"],
-  ["の", "no"],
-  ["は", "ha"],
-  ["ひ", "hi"],
-  ["ふ", "fu"],
-  ["へ", "he"],
-  ["ほ", "ho"],
-  ["ま", "ma"],
-  ["み", "mi"],
-  ["む", "mu"],
-  ["め", "me"],
-  ["も", "mo"],
-  ["や", "ya"],
-  ["ゆ", "yu"],
-  ["よ", "yo"],
-  ["ら", "ra"],
-  ["り", "ri"],
-  ["る", "ru"],
-  ["れ", "re"],
-  ["ろ", "ro"],
-  ["わ", "wa"],
-  ["を", "wo"],
-  ["ん", "n"],
-];
+import Button from "../components/Button";
 
 const Hiragana = () => {
-  const shuffledCharacters = shuffle(Characters);
+  const [characters, setCharacters] = useState<any[]>([]);
+  const [dakuten, setDakuten] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  useEffect(() => {
+    if (dakuten === 0) {
+      fetch("/hiragana.json")
+        .then((response) => response.json())
+        .then((data) => setCharacters(data));
+    } else {
+      fetch("/dakuten.json")
+        .then((response) => response.json())
+        .then((data) => setCharacters(data));
+    }
+  }, [dakuten]);
+
+  const shuffledCharacters = shuffle(characters);
 
   const handleCorrectAnswer = (index: number) => {
     if (index < inputRefs.current.length - 1) {
@@ -61,9 +28,25 @@ const Hiragana = () => {
     }
   };
 
+  const handleDakuten = () => {
+    console.log("dakuten: ", dakuten);
+    if (dakuten === 0) {
+      setDakuten(1);
+    } else {
+      setDakuten(0);
+    }
+  };
+
   return (
     <>
-      <br />
+      <Button
+        onClick={() => {
+          handleDakuten();
+        }}
+      >
+        Dakuten
+      </Button>
+
       <div className="d-flex flex-wrap">
         {shuffledCharacters.map((char, index) => (
           <div className="p-2" key={index}>
